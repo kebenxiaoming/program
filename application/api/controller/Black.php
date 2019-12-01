@@ -33,7 +33,12 @@ class Black extends Base
         }else{
             $page=1;
         }
-        $result=$this->blackService->getList([],$page);
+        if(!empty($postData['per_page'])) {
+            $listRow = $postData['per_page'];
+        }else{
+            $listRow=10;
+        }
+        $result=$this->blackService->getList([],$page,$listRow);
         return api_res($result['status'],$result['msg'],$result['data']);
     }
 }

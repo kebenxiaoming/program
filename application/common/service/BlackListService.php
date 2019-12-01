@@ -29,7 +29,7 @@ class BlackListService extends BaseService
      * Email: xiaoyao_xiao@126.com
      * Date: time
      */
-    public function getList($where=[],$page=1,$order='sort_num DESC,id DESC',$listRow=10){
+    public function getList($where=[],$page=1,$listRow=10,$order='sort_num DESC,id DESC'){
         $count=$this->blackListModel->where($where)->where('status',1)->count();
         if($count>0){
             $list=$this->blackListModel->field('id,title,description,name,url')->where($where)->where('status',1)->order($order)->page($page,$listRow)->select();
